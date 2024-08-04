@@ -5,6 +5,7 @@ import { CustomerManagementComponent } from './customer-management.component';
 import { RouterModule } from '@angular/router';
 import { CustomerTableComponent } from './customer-table/customer-table.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [CustomerManagementComponent],
@@ -14,6 +15,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     RouterModule,
     CustomerTableComponent,
     CustomerDetailsComponent,
+    SharedModule,
   ],
 })
 export class CustomerManagementModule {}

@@ -10,4 +10,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  tablePath: string = 'customer/customer-table';
+  customerTable: string = 'Customer Listing';
+
+  detailsPath: string = 'customer/customer-details';
+  addCustomerLabel: string = 'Add Customer';
+}

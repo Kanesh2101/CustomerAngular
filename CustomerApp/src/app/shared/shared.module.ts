@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MenuButtonComponent } from './menu-button/menu-button.component';
 
 @NgModule({
   declarations: [TableViewComponent],
@@ -16,7 +17,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MenuButtonComponent,
   ],
-  exports: [TableViewComponent],
+  exports: [TableViewComponent, MenuButtonComponent],
 })
 export class SharedModule {}

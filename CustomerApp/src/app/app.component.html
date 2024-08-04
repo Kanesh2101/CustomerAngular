@@ -28,10 +28,15 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <!-- section-title -->
           <div class="section-title mb-0">
-            <router-outlet />
+            <div class="menu-container">
+              <Mbutton [routerLink]="tablePath" [buttonName]="customerTable" />
+              <Mbutton
+                [routerLink]="detailsPath"
+                [buttonName]="addCustomerLabel"
+              />
+            </div>
 
-            <button routerLink="/customer-table">View Customers</button>
-            <button routerLink="/customer-details">Add Customers</button>
+            <router-outlet />
           </div>
           <!-- /.section-title -->
         </div>

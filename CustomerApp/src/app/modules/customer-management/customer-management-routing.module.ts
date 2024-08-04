@@ -5,16 +5,17 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 import { CustomerTableComponent } from './customer-table/customer-table.component';
 
 const routes: Routes = [
-  // {
-  //   path: 'customer',
-  //   component: CustomerManagementComponent,
-  //   children: [
-  //     { path: 'customer-details', component: CustomerDetailsComponent },
-  //     { path: 'customer-table', component: CustomerTableComponent },
-  //   ],
-  // },
-  { path: 'customer-details', component: CustomerDetailsComponent },
-  { path: 'customer-table', component: CustomerTableComponent },
+  {
+    path: 'customer',
+    component: CustomerManagementComponent,
+    children: [
+      {
+        path: 'customer-details',
+        component: CustomerDetailsComponent,
+      },
+      { path: 'customer-table', component: CustomerTableComponent },
+    ],
+  },
 ];
 
 @NgModule({
