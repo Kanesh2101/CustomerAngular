@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,7 +8,8 @@ import {
 } from '@angular/forms';
 import { Customer } from '../../types/customer.type';
 import { CommonModule } from '@angular/common';
-import { C } from '@angular/cdk/keycodes';
+import { CustomerService } from '../../services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-details',
@@ -16,8 +17,11 @@ import { C } from '@angular/cdk/keycodes';
   imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './customer-details.component.html',
   styleUrl: './customer-details.component.scss',
+  providers: [CustomerService],
 })
 export class CustomerDetailsComponent implements OnInit {
+  customerService = inject(CustomerService);
+  router = inject(Router);
   customerForm!: FormGroup;
   customer: Customer = {
     email: '',
@@ -50,7 +54,9 @@ export class CustomerDetailsComponent implements OnInit {
 
   onSubmit() {
     this.customerForm.markAllAsTouched();
-
-    console.log(this.customerForm.value);
+    this.customerService
+      .createCustomer(this.customerForm.value)
+      .subscribe((res) => {});
+    this.router.navigate(['customer/customer-table']);
   }
 }

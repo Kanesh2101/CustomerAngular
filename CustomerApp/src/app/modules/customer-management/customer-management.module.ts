@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CustomerTableComponent } from './customer-table/customer-table.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { SharedModule } from '../../shared/shared.module';
+import { CustomerService } from '../services/customer.service';
 
 @NgModule({
   declarations: [CustomerManagementComponent],
@@ -17,5 +18,6 @@ import { SharedModule } from '../../shared/shared.module';
     CustomerDetailsComponent,
     SharedModule,
   ],
+  providers: [CustomerService],
 })
 export class CustomerManagementModule {}
