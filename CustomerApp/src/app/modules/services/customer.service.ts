@@ -7,9 +7,10 @@ import { Customer, CustomerDTO } from '../types/customer.type';
 })
 export class CustomerService {
   constructor(private http: HttpClient) {}
+  url = 'https://localhost:7064/api/Customers';
 
   getCustomers() {
-    return this.http.get('https://localhost:7064/api/Customers');
+    return this.http.get(this.url);
   }
 
   createCustomer(customer: Customer) {
@@ -20,7 +21,7 @@ export class CustomerService {
       contactNo: customer.contactNo.toString(),
       address: customer.address,
     };
-    return this.http.post('https://localhost:7064/api/Customers', customerDTO);
+    return this.http.post(this.url, customerDTO);
   }
 
   updateCustomer(customer: Customer) {
@@ -31,10 +32,10 @@ export class CustomerService {
       contactNo: customer.contactNo.toString(),
       address: customer.address,
     };
-    return this.http.put('https://localhost:7064/api/Customers', customerDTO);
+    return this.http.put(this.url, customerDTO);
   }
 
   deleteCustomer(email: string) {
-    return this.http.delete('https://localhost:7064/api/Customers/' + email);
+    return this.http.delete(this.url + '/' + email);
   }
 }
