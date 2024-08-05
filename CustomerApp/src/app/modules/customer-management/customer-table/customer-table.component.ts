@@ -66,12 +66,23 @@ export class CustomerTableComponent {
   loadCustomers() {
     this.customerService
       .getCustomers()
-      .subscribe((res: any) => (this.customerData = res));
+      .subscribe((res: any) => (this.customerData = res.value));
   }
 
   deleteCustomer(customer: Customer) {
-    this.customerService.deleteCustomer(customer.email).subscribe((res) => {
-      this.router.navigate(['customer/customer-table']);
+    this.customerService
+      .deleteCustomer(customer.email)
+      .subscribe((res: any) => {
+        if (res.result) {
+          alert('User Deleted Successfully');
+          this.router.navigate(['customer/customer-table']);
+        }
+      });
+  }
+
+  viewCustomer(customer: Customer) {
+    this.router.navigate(['customer/customer-details'], {
+      state: { customerValue: customer },
     });
   }
 }

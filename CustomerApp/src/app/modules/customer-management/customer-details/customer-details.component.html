@@ -1,146 +1,146 @@
 <div class="d-flex justify-content-center">
   <div class="card px-1 py-4">
-    <div class="card-body">
-      <h6 class="information mt-4">Customer Register</h6>
-      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-sm-12 d-flex flex-row">
-            <div class="form-group col-sm-6 pl-0">
-              <!-- <label for="name">Name</label> -->
+    <h6 class="information mt-4">{{ titleLable }}</h6>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                id="email"
+                class="form-control"
+                type="email"
+                placeholder="Email ID"
+                name="email"
+                formControlName="email"
+                [class.is-invalid]="
+                  customerForm.controls['email'].invalid &&
+                  customerForm.controls['email'].touched
+                "
+                [readonly]="isEditForm"
+              />
+            </div>
+          </div>
+          <div
+            *ngIf="
+              customerForm.controls['email'].touched &&
+              (customerForm.controls['email'].errors ||
+                customerForm.controls['email'].invalid)
+            "
+          >
+            <small class="text-danger">Valid Email is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 d-flex flex-row">
+          <div class="form-group col-sm-6 pl-0">
+            <!-- <label for="name">Name</label> -->
+            <input
+              class="form-control"
+              type="text"
+              placeholder="First Name"
+              formControlName="firstName"
+              [class.is-invalid]="
+                customerForm.controls['firstName'].invalid &&
+                customerForm.controls['firstName'].touched
+              "
+            />
+            <div
+              *ngIf="
+                customerForm.controls['firstName'].touched &&
+                (customerForm.controls['firstName'].errors ||
+                  customerForm.controls['firstName'].invalid)
+              "
+            >
+              <small class="text-danger">First Name is required</small>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-6 pr-0">
+            <!-- <label for="name">Name</label> -->
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Last Name"
+              formControlName="lastName"
+              [class.is-invalid]="
+                customerForm.controls['lastName'].invalid &&
+                customerForm.controls['lastName'].touched
+              "
+            />
+            <div
+              *ngIf="
+                customerForm.controls['lastName'].touched &&
+                (customerForm.controls['lastName'].errors ||
+                  customerForm.controls['lastName'].invalid)
+              "
+            >
+              <small class="text-danger">First Name is required</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Mobile"
+                formControlName="contactNo"
+                [class.is-invalid]="
+                  customerForm.controls['contactNo'].invalid &&
+                  customerForm.controls['contactNo'].touched
+                "
+              />
+            </div>
+          </div>
+          <div
+            *ngIf="
+              customerForm.controls['contactNo'].touched &&
+              (customerForm.controls['contactNo'].errors ||
+                customerForm.controls['contactNo'].invalid)
+            "
+          >
+            <small class="text-danger">Contact No is required</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="input-group">
               <input
                 class="form-control"
                 type="text"
-                placeholder="First Name"
-                formControlName="firstName"
+                placeholder="Address"
+                formControlName="address"
                 [class.is-invalid]="
-                  customerForm.controls['firstName'].invalid &&
-                  customerForm.controls['firstName'].touched
+                  customerForm.controls['address'].invalid &&
+                  customerForm.controls['address'].touched
                 "
               />
-              <div
-                *ngIf="
-                  customerForm.controls['firstName'].touched &&
-                  (customerForm.controls['firstName'].errors ||
-                    customerForm.controls['firstName'].invalid)
-                "
-              >
-                <small class="text-danger">First Name is required</small>
-              </div>
             </div>
+          </div>
+          <div
+            *ngIf="
+              customerForm.controls['address'].touched &&
+              (customerForm.controls['address'].errors ||
+                customerForm.controls['address'].invalid)
+            "
+          >
+            <small class="text-danger">Address is required</small>
+          </div>
+        </div>
+      </div>
 
-            <div class="form-group col-sm-6 pr-0">
-              <!-- <label for="name">Name</label> -->
-              <input
-                class="form-control"
-                type="text"
-                placeholder="Last Name"
-                formControlName="lastName"
-                [class.is-invalid]="
-                  customerForm.controls['lastName'].invalid &&
-                  customerForm.controls['lastName'].touched
-                "
-              />
-              <div
-                *ngIf="
-                  customerForm.controls['lastName'].touched &&
-                  (customerForm.controls['lastName'].errors ||
-                    customerForm.controls['lastName'].invalid)
-                "
-              >
-                <small class="text-danger">First Name is required</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  type="number"
-                  placeholder="Mobile"
-                  formControlName="contactNo"
-                  [class.is-invalid]="
-                    customerForm.controls['contactNo'].invalid &&
-                    customerForm.controls['contactNo'].touched
-                  "
-                />
-              </div>
-            </div>
-            <div
-              *ngIf="
-                customerForm.controls['contactNo'].touched &&
-                (customerForm.controls['contactNo'].errors ||
-                  customerForm.controls['contactNo'].invalid)
-              "
-            >
-              <small class="text-danger">Contact No is required</small>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div class="input-group">
-                <input
-                  id="email"
-                  class="form-control"
-                  type="email"
-                  placeholder="Email ID"
-                  name="email"
-                  formControlName="email"
-                  [class.is-invalid]="
-                    customerForm.controls['email'].invalid &&
-                    customerForm.controls['email'].touched
-                  "
-                />
-              </div>
-            </div>
-            <div
-              *ngIf="
-                customerForm.controls['email'].touched &&
-                (customerForm.controls['email'].errors ||
-                  customerForm.controls['email'].invalid)
-              "
-            >
-              <small class="text-danger">Valid Email is required</small>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Address"
-                  formControlName="address"
-                  [class.is-invalid]="
-                    customerForm.controls['address'].invalid &&
-                    customerForm.controls['address'].touched
-                  "
-                />
-              </div>
-            </div>
-            <div
-              *ngIf="
-                customerForm.controls['address'].touched &&
-                (customerForm.controls['address'].errors ||
-                  customerForm.controls['address'].invalid)
-              "
-            >
-              <small class="text-danger">Address is required</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="d-flex flex-column text-center px-5 mt-3 mb-3"></div>
-        <button class="btn btn-primary btn-block confirm-button">
-          Register
-        </button>
-      </form>
-    </div>
+      <div class="d-flex flex-column text-center px-5 mt-3 mb-3"></div>
+      <button class="btn btn-primary btn-block confirm-button">
+        {{ buttonLabel }}
+      </button>
+    </form>
   </div>
 </div>

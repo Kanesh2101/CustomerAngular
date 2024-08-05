@@ -20,16 +20,43 @@ import { Router } from '@angular/router';
   providers: [CustomerService],
 })
 export class CustomerDetailsComponent implements OnInit {
-  customerService = inject(CustomerService);
-  router = inject(Router);
+  constructor(
+    private router: Router,
+    private customerService: CustomerService
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras) {
+      const state = navigation.extras.state as { customerValue: Customer };
+      if (state) {
+        this.customerObj = state.customerValue;
+        this.isEditForm = true;
+      }
+    }
+  }
+
+  isEditForm: boolean = false;
   customerForm!: FormGroup;
-  customer: Customer = {
+  customerObj: Customer = {
     email: '',
     firstName: '',
     lastName: '',
     contactNo: 0,
     address: '',
   };
+
+  get buttonLabel() {
+    if (this.isEditForm) {
+      return 'Update';
+    }
+    return 'Register';
+  }
+
+  get titleLable() {
+    if (this.isEditForm) {
+      return 'Update Customer';
+    }
+    return 'Customer Register';
+  }
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
@@ -45,18 +72,44 @@ export class CustomerDetailsComponent implements OnInit {
         Validators.minLength(12),
         Validators.pattern(/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/),
       ]),
-      address: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
+      address: new FormControl('', [Validators.required]),
+    });
+
+    if (this.customerObj) {
+      this.populateForm();
+    }
+  }
+
+  populateForm() {
+    this.customerForm.setValue({
+      firstName: this.customerObj.firstName,
+      lastName: this.customerObj.lastName,
+      email: this.customerObj.email,
+      contactNo: this.customerObj.contactNo,
+      address: this.customerObj.address,
     });
   }
 
   onSubmit() {
     this.customerForm.markAllAsTouched();
-    this.customerService
-      .createCustomer(this.customerForm.value)
-      .subscribe((res) => {});
-    this.router.navigate(['customer/customer-table']);
+    if (this.isEditForm) {
+      this.customerService
+        .updateCustomer(this.customerForm.value)
+        .subscribe((res: any) => {
+          if (res.result) {
+            alert('User Updated Successfully');
+            this.router.navigate(['customer/customer-table']);
+          }
+        });
+    } else {
+      this.customerService
+        .createCustomer(this.customerForm.value)
+        .subscribe((res: any) => {
+          if (res.result) {
+            alert('User Created Successfully');
+            this.router.navigate(['customer/customer-table']);
+          }
+        });
+    }
   }
 }
