@@ -64,7 +64,6 @@ export class CustomerDetailsComponent implements OnInit {
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
         Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
       ]),
       contactNo: new FormControl('', [

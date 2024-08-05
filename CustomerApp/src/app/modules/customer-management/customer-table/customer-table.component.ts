@@ -75,7 +75,7 @@ export class CustomerTableComponent {
       .subscribe((res: any) => {
         if (res.result) {
           alert('User Deleted Successfully');
-          this.router.navigate(['customer/customer-table']);
+          this.loadCustomers();
         }
       });
   }
